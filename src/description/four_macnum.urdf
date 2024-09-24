@@ -330,4 +330,18 @@
     </sensor>
   </gazebo>
 
+  <gazebo>
+    <plugin name="planar_controller" filename="libgazebo_ros_planar_move.so">
+      <enable_y_axis>true</enable_y_axis>
+      <!-- <ros> -->
+        <!-- <namespace>my_robot_namespace</namespace> -->
+        <!-- <remapping>cmd_vel:=custom_cmd_vel</remapping> -->
+        <!-- <remapping>odom:=custom_odom</remapping> -->
+      <!-- </ros> -->
+      <odometry_frame>odom</odometry_frame>
+      <publish_rate>30.0</publish_rate>
+      <robot_base_frame>base_footprint</robot_base_frame>
+    </plugin>
+  </gazebo>
+
 </robot>
