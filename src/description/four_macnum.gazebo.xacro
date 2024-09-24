@@ -1,0 +1,127 @@
+<?xml version='1.0'?>
+<robot name='four_macnum_sim' xmlns:xacro='http://ros.org/wiki/xacro'>
+  <xacro:arg name='laser_visual'  default='false'/>
+  <xacro:arg name='camera_visual' default='false'/>
+  <xacro:arg name='imu_visual'    default='false'/>
+
+  <gazebo reference='base_link'>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference='wheel1_link'>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference='wheel2_link'>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference='wheel3_link'>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference='wheel4_link'>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference='imu_link'>
+    <sensor type='imu' name='imu'>
+      <always_on>true</always_on>
+      <visualize>$(arg imu_visual)</visualize>
+    </sensor>
+  </gazebo>
+
+  <!-- 转成ros2格式 -->
+  <gazebo>
+    <plugin name='imu_plugin' filename='libgazebo_ros_imu_sensor.so'>
+      <always_on>true</always_on>
+      <body_name>imu_link</body_name>
+      <frame_name>imu_link</frame_name>
+  
+      <!-- 使用 <ros> 标签来设置命名空间和主题重映射 -->
+      <ros>
+        <!-- 设置为空 -->
+        <namespace></namespace>
+        <remapping>~/out:=imu</remapping>
+      </ros>
+  
+      <service_name>imu_service</service_name>
+      <initial_orientation_as_reference>false</initial_orientation_as_reference>
+      
+      <!-- 更新速率在传感器的 SDF 中直接设置 -->
+      <update_rate>100.0</update_rate>
+  
+      <!-- 噪声配置 -->
+      <imu>
+        <noise>
+          <type>gaussian</type>
+          <rate>
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+            <bias_mean>0.0000075</bias_mean>
+            <bias_stddev>0.0000008</bias_stddev>
+          </rate>
+          <accel>
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </accel>
+        </noise>
+      </imu>
+    </plugin>
+  </gazebo>
+
+
+  <gazebo reference='lidar_link'>
+    <material>Gazebo/DarkGrey</material>
+    <sensor type='ray' name='lds_sensor'>
+      <visualize>$(arg laser_visual)</visualize>
+      <update_rate>5.0</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>0.0</min_angle>
+            <max_angle>6.28319</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.15</min>
+          <max>12</max>
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name='lds_plugin' filename='libgazebo_ros_ray_sensor.so'>
+        <ros>
+          <namespace>my_robot_namespace</namespace>
+          <remapping>~/out:=scan</remapping>
+        </ros>
+        <frame_name>lidar_link</frame_name>
+        <output_type>sensor_msgs/LaserScan</output_type>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="planar_controller" filename="libgazebo_ros_planar_move.so">
+      <enable_y_axis>true</enable_y_axis>
+      <ros>
+        <namespace>my_robot_namespace</namespace>
+        <remapping>cmd_vel:=custom_cmd_vel</remapping>
+        <remapping>odom:=custom_odom</remapping>
+      </ros>
+      <odometry_frame>odom</odometry_frame>
+      <publish_rate>30.0</publish_rate>
+      <robot_base_frame>base_footprint</robot_base_frame>
+    </plugin>
+  </gazebo>
+
+  
+</robot>
