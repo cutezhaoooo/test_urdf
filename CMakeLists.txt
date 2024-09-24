@@ -19,7 +19,7 @@ find_package(ament_cmake REQUIRED)
 
 # Install other directories (src, launch, rviz) if needed
 install(
-  DIRECTORY src launch rviz
+  DIRECTORY src launch rviz world
   DESTINATION share/${PROJECT_NAME}
 )
 
