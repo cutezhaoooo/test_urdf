@@ -1,12 +1,16 @@
 <?xml version="1.0"?>
-<robot name="four_macnum" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="four_macnum" xmlns:xacro="http://ros.org/wiki/xacro" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller">
   <!-- <xacro:include filename="$(find test_urdf)/description/four_macnum.gazebo.xacro"/> -->
   <!--xacro:include filename="$(find realsense2_description/meshes)/urdf/_d435.urdf.xacro" />
   <xacro:include filename="$(find realsense2_description/meshes)/urdf/_d435.gazebo.xacro" /-->
   <xacro:arg name='laser_visual'  default='false'/>
   <xacro:arg name='camera_visual' default='false'/>
   <xacro:arg name='imu_visual'    default='false'/>
-
+  
+  <controller:gazebo_ros_factory name="gazebo_ros_factory_controller" plugin="libgazebo_ros_factory.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>1000.0</updateRate>
+  </controller:gazebo_ros_factory>
 
   <link name="base_footprint"/>
   <joint name="base_joint" type="fixed">

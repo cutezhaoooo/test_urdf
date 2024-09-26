@@ -46,31 +46,36 @@ def generate_launch_description():
         arguments=['-d', LaunchConfiguration('rvizconfig')],
     )
 
-    spawn_entity = launch_ros.actions.Node(
-        # 要运行的gazebo_ros包
-        package='gazebo_ros',
-        # 在gazebo中生成一个实体
-        executable='spawn_entity.py',
-        # 将机器人的名称设为four_macnum  从robot_description中得到urdf描述
-        arguments=['-entity', 'four_macnum', '-topic', 'robot_description'],
-        output='screen'
-    )
+    # spawn_entity = launch_ros.actions.Node(
+    #     # 要运行的gazebo_ros包
+    #     package='gazebo_ros',
+    #     # 在gazebo中生成一个实体
+    #     executable='spawn_entity.py',
+    #     # 将机器人的名称设为four_macnum  从robot_description中得到urdf描述
+    #     arguments=['-entity', 'four_macnum', '-topic', 'robot_description'],
+    #     output='screen'
+    # )
 
-    world_path=os.path.join(pkg_share, 'world/my_world.sdf')
-    # world_path=os.path.join(pkg_share, 'world/sim.world')
+    # world_path=os.path.join(pkg_share, 'world/my_world.sdf')
+    # world_path=os.path.join(pkg_share, 'world/selfbuild.sdf')
+    # world_path=os.path.join(pkg_share, 'world/slam_simple.world')
+    # world_path=os.path.join(pkg_share, 'world/Untitled/model.sdf')
+    
+    # world_path=os.path.join(pkg_share, 'world/AAAtest.sdf')
 
     return launch.LaunchDescription([
-        # launch.actions.DeclareLaunchArgument(name='gui', default_value='True',
+        # launch.actions.DeclareLaunchArgument(name='gui', default_value='True'+,
                                             # description='Flag to enable joint_state_publisher_gui'),
         launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
                                             description='Absolute path to robot urdf file'),
         launch.actions.DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path,
                                             description='Absolute path to rviz config file'),
-        launch.actions.ExecuteProcess(cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so'], output='screen'),
-        launch.actions.ExecuteProcess(cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so', world_path], output='screen'),
+        # launch.actions.ExecuteProcess(cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so'], output='screen'),
+        # launch.actions.ExecuteProcess(        cmd=['gazebo','--verbose',world_files,'-s','libgazebo_ros_factory.so']),
+        # launch.actions.ExecuteProcess(cmd=['gazebo', '--verbose', world_path,'-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so'], output='screen'),
         joint_state_publisher_node,
         # joint_state_publisher_gui_node,
         robot_state_publisher_node,
-        spawn_entity,
+        # spawn_entity,
         rviz_node,
     ])
