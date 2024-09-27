@@ -21,6 +21,7 @@ def generate_launch_description():
         executable='joint_state_publisher',
         name='joint_state_publisher',
         arguments=[default_model_path],
+    )
         # arguments=[{'robot_description':Command([
         #     'xacro',
         #     default_model_path,
@@ -30,7 +31,6 @@ def generate_launch_description():
         # ])}],
         # # parameters=[{'robot_description': Command(['xacro ', default_model_path])}],
         # condition=launch.conditions.UnlessCondition(LaunchConfiguration('gui'))
-    )
     # 在gazebo中启动launch文件
     # joint_state_publisher_gui_node = launch_ros.actions.Node(
     #     package='joint_state_publisher_gui',

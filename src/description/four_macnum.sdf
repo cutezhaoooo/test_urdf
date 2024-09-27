@@ -1,0 +1,257 @@
+<sdf version='1.7'>
+  <model name='four_macnum'>
+    <link name='base_footprint'>
+      <inertial>
+        <pose>-0 0 0.12 0 -0 0</pose>
+        <mass>6.00006</mass>
+        <inertia>
+          <ixx>60.0218</ixx>
+          <ixy>-1.35525e-20</ixy>
+          <ixz>-1.105e-07</ixz>
+          <iyy>60.0468</iyy>
+          <iyz>0</iyz>
+          <izz>60.065</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_footprint_fixed_joint_lump__base_link_collision'>
+        <pose>0 0 0.12 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.3 0.2 0.06</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='base_footprint_fixed_joint_lump__lidar_link_collision_1'>
+        <pose>0.11 0 0.185 1.5707 0 -3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>file:///$(find test_urdf)/src/description/meshes/lidara2f.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_footprint_fixed_joint_lump__shell_link_collision_2'>
+        <pose>-0.13 0 0.09 0 0 -1.5707</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///$(find test_urdf)/src/description/meshes/shell.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='base_footprint_fixed_joint_lump__wheel1_link_collision_3'>
+        <pose>0.1205 0.1425 0.05 1.5707 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.05</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name='base_footprint_fixed_joint_lump__wheel2_link_collision_4'>
+        <pose>0.1205 -0.1425 0.05 1.5707 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.05</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name='base_footprint_fixed_joint_lump__wheel3_link_collision_5'>
+        <pose>-0.1205 0.1425 0.05 1.5707 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.05</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name='base_footprint_fixed_joint_lump__wheel4_link_collision_6'>
+        <pose>-0.1205 -0.1425 0.05 1.5707 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.05</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='base_footprint_fixed_joint_lump__base_link_visual'>
+        <pose>0 0 0.12 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.3 0.2 0.06</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='base_footprint_fixed_joint_lump__lidar_link_visual_1'>
+        <pose>0.11 0 0.185 1.5707 0 -3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>file://$(find test_urdf)/src/description/meshes/lidara2f.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='base_footprint_fixed_joint_lump__shell_link_visual_2'>
+        <pose>-0.13 0 0.09 0 0 -1.5707</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file://$(find test_urdf)/src/description/meshes/shell.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='base_footprint_fixed_joint_lump__wheel1_link_visual_3'>
+        <pose>0.1205 0.1425 0.05 1.5707 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.05</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+      <visual name='base_footprint_fixed_joint_lump__wheel2_link_visual_4'>
+        <pose>0.1205 -0.1425 0.05 1.5707 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.05</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+      <visual name='base_footprint_fixed_joint_lump__wheel3_link_visual_5'>
+        <pose>-0.1205 0.1425 0.05 1.5707 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.05</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+      <visual name='base_footprint_fixed_joint_lump__wheel4_link_visual_6'>
+        <pose>-0.1205 -0.1425 0.05 1.5707 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.05</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+      <sensor name='imu_sensor' type='imu'>
+        <plugin name='imu_plugin' filename='libgazebo_ros_imu_sensor.so'>
+          <ros>
+            <namespace>/demo</namespace>
+            <remapping>~/out:=imu</remapping>
+          </ros>
+          <initial_orientation_as_reference>0</initial_orientation_as_reference>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>100</update_rate>
+        <visualize>1</visualize>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0002</stddev>
+                <bias_mean>7.5e-06</bias_mean>
+                <bias_stddev>8e-07</bias_stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0002</stddev>
+                <bias_mean>7.5e-06</bias_mean>
+                <bias_stddev>8e-07</bias_stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0002</stddev>
+                <bias_mean>7.5e-06</bias_mean>
+                <bias_stddev>8e-07</bias_stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.017</stddev>
+                <bias_mean>0.1</bias_mean>
+                <bias_stddev>0.001</bias_stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.017</stddev>
+                <bias_mean>0.1</bias_mean>
+                <bias_stddev>0.001</bias_stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.017</stddev>
+                <bias_mean>0.1</bias_mean>
+                <bias_stddev>0.001</bias_stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+        <pose>0 0 0.12 0 -0 0</pose>
+      </sensor>
+      <sensor name='lidar' type='ray'>
+        <always_on>1</always_on>
+        <visualize>1</visualize>
+        <update_rate>5</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>6.28</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.12</min>
+            <max>3.5</max>
+            <resolution>0.015</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name='scan' filename='libgazebo_ros_ray_sensor.so'>
+          <ros>
+            <remapping>~/out:=scan</remapping>
+          </ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+          <frame_name>lidar_link</frame_name>
+        </plugin>
+        <pose>0.11 0 0.185 0 -0 -3.14159</pose>
+      </sensor>
+    </link>
+    <static>0</static>
+    <plugin name='planar_controller' filename='libgazebo_ros_planar_move.so'>
+      <enable_y_axis>1</enable_y_axis>
+      <odometry_frame>odom</odometry_frame>
+      <publish_rate>30.0</publish_rate>
+      <robot_base_frame>base_footprint</robot_base_frame>
+    </plugin>
+  </model>
+</sdf>

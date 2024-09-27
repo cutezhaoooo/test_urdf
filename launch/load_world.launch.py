@@ -27,7 +27,7 @@ def generate_launch_description():
 
     xml = xml.replace('"', '\\"')
 
-    swpan_args = '{name: \"my_robot\", xml: \"' + xml + '\" }'
+    swpan_args = '{name: \"four_macnum\", xml: \"' + xml + '\" }'
 
     robotmodel=ExecuteProcess(
             cmd=['ros2', 'service', 'call', '/spawn_entity',

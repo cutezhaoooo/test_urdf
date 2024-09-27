@@ -1,8 +1,0 @@
-<robot xmlns:controller="http://gazebosim.org/xml/1.0" name="your_robot_name">
-    <!-- 其他配置 -->
-    <controller:gazebo_ros_factory name="gazebo_ros_factory_controller" plugin="libgazebo_ros_factory.so">
-      <alwaysOn>true</alwaysOn>
-      <updateRate>1000.0</updateRate>
-    </controller:gazebo_ros_factory>
-    <!-- 更多配置 -->
-  </robot>
